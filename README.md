@@ -1,4 +1,4 @@
-These steps help you to secure your Freqtrade server.
+These steps help you to secure your Freqtrade server on a LINUX system.
 
 !!! WARNING !!!
 

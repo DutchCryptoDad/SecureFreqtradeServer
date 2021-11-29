@@ -79,6 +79,8 @@ AddressFamily inet
 
 PermitRootLogin no
 
+AllowUsers dcd
+
 PasswordAuthentication no 
 PermitEmptyPasswords no
 
@@ -94,6 +96,15 @@ sudo systemctl restart sshd
 ### Add the port to the firewall
 
 If you have set up a firewall (and I hope you did), then you should add the new SSH port to the rules.
+
+
+You can check the open ports on your system with:
+
+```
+sudo ss -atpu
+```
+
+If port 1970 is shown, then the firewall can be changed.
 
 
 ```
