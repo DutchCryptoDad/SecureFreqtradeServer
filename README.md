@@ -8,4 +8,8 @@ These steps help you to secure your Freqtrade server.
 
 * Do not share passwords, keyfiles and other security information with others!
 
+The steps you see are based on a [Debian 11](https://www.linuxvminages.com/images/debian-11/) linux system.
+This setup is also used on a Cloud VM and on a Raspberri Pi.
+
+
 
