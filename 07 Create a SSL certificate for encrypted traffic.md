@@ -16,7 +16,7 @@ Answer the questions for the certificate and move on to the next step:
 
 ## Create strong key for negotiating the secure layer
 
-Before any connection is made, the RSA keys have to be exchanged. This section will create a strong session exchange before any traffic is send. See also [Forward secrecy](https://en.wikipedia.org/wiki/Forward_secrecy).
+Before any connection is made, the RSA keys have to be exchanged. This section will create a keyfile that is used in the negotiations to create a strong session before any traffic is send. See also [Forward secrecy](https://en.wikipedia.org/wiki/Forward_secrecy).
 
 ```
 sudo openssl dhparam -out /etc/nginx/dhparam.pem 4096
@@ -77,19 +77,35 @@ Backup the file:
 sudo cp /etc/nginx/conf.d/freq_proxy.conf /etc/nginx/sites-available/freq_proxy.conf.bak
 ```
 
-
-Open the file:
+Edit the file:
 
 ```
 sudo nano /etc/nginx/conf.d/freq_proxy.conf
+```
+
+your file could probably look like this:
+
+```
+server {
+        listen 80;
+        listen [::]:80;
+
+        # Enter your domain name here or the IP address of the servers ethernet address:
+        server_name 192.168.253.128;
+
+        location / {
+                proxy_pass http://localhost:8080/;
+        }
+}
+
 ```
 
 Edit the file to mach like this:
 
 ```
 server {
-        listen 443;
-        listen [::]:443;
+        listen 443 ssl;
+        listen [::]:443 ssl;
         include snippets/self-signed.conf;
         include snippets/ssl-params.conf;
 
@@ -106,9 +122,10 @@ server {
 
     server_name 192.168.253.128;
 
-    return 302 https://$server_name$request_uri;
+    return 301 https://$server_name$request_uri;
 }
 ```
+
 Test the configuration for errors with:
 
 ```
@@ -172,3 +189,8 @@ The final test is to see if the server is reachable over https and if the certif
 
 Take note that because it is a self-signed certificate, you will still get an error in the browser but you can ignore this and proceed to your secured connection Freqtrade bot UI.
 
+In my case:
+
+```
+http://192.168.253.128
+```
