@@ -21,15 +21,15 @@ Then create a new user that you will use for future logins:
 
 
 ```
-adduser dcd
-`sd``
+sudo adduser dcd
+```
 
 After answerring the questions the user will be made.
 
 Now give the user sudo rights
 
 ```
-usermod -a -G sudo  dcd
+sudo usermod -a -G sudo  dcd
 ```
 
 ### Test user sudo rights
