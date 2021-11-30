@@ -11,5 +11,14 @@ These steps help you to secure your Freqtrade server on a LINUX system.
 The steps you see are based on a [Debian 11](https://www.linuxvminages.com/images/debian-11/) linux system.
 This setup is also used on a Cloud VM and on a Raspberri Pi.
 
+Steps in this security process are:
 
+1. Create a normal user and disable the root user
+2. Configure a firewall
+3. Configure the SSH server for secure login
+4. Configure the time server
+5. Enable automatic updates for your server
+6. Freqtrade bot security hints
+7. Create NGINX for a proxy connection to your bot
+8. Create a secure web connection with a self-signed certificate
 
