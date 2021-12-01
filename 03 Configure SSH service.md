@@ -89,10 +89,6 @@ UsePAM no
 X11Forwarding no
 ```
 
-```
-sudo systemctl restart sshd
-```
-
 ### Add the port to the firewall
 
 If you have set up a firewall (and I hope you did), then you should add the new SSH port to the rules.
@@ -115,7 +111,16 @@ sudo ufw allow 1970/tcp
 sudo ufw status
 ```
 
-Now you should be able to logon to the system with the following command (p = portnumber):
+## Reboot the SSH service to enable the configuration
+
+
+```
+sudo systemctl restart sshd
+```
+
+## Test the server
+
+Open a new terminal and login to the server with:
 
 ```
 ssh 'dcd@172.16.65.130' -p 1970
@@ -126,7 +131,7 @@ ssh 'dcd@172.16.65.130' -p 1970
 Because we first added a firewall rule for SSH port 22 and since we changed this port to 1970. This old rule for port 22 is not necessary anymore. We can remove these rules with:
 
 ```
-sudo ufw status numbered
-
-sudo ufw delete <RULENUMBER port 22>
+sudo ufw delete allow 22/tcp
 ```
+
+

@@ -35,13 +35,19 @@ Check if nginx is running:
 systemctl status nginx
 ```
 
-And you can check your browser too:
+Add the port to the firewall, otherwise you cannot connect to the webserver.
 
 ```
-http://127.0.0.1/
+Sudo ufw allow http
 ```
 
-## Configure nginx for a reverse pr
+Now you can check your browser:
+
+```
+http://172.16.65.131
+```
+
+## Configure nginx for a reverse proxy
 
 Go to the directory:  
 ``cd /etc/nginx/conf.d``
@@ -77,22 +83,6 @@ mv default.conf default.conf.disabled
 
 ```
 
-If you want to use your bot on a secure HTTPS port, then use the following in the freq_proxy.conf file:
-
-```
-server {
-        listen 443;
-        listen [::]:443;
-
-        # Enter your domain name here or the IP address of the servers ethernet address:
-        server_name 192.168.253.128;
-
-        location / {
-                proxy_pass http://localhost:8080/;
-        }
-}
-```
-
 Test the configuration for errors with:
 
 ```
@@ -114,7 +104,7 @@ sudo nginx -s reload
 
 ## Configure the firewall
 
-The final step is to configure the firewall to let port 80 pass.
+This step is to configure the firewall to let port 80 pass.
 
 Use the following commands to do this:
 
@@ -133,11 +123,5 @@ Now browse to your bot on the default webserver port from another PC.
 
 ```
 http://192.168.253.128
-```
-
-or
-
-```
-http://192.168.253.128:443
 ```
 

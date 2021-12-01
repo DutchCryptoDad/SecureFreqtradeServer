@@ -69,6 +69,8 @@ add_header X-XSS-Protection "1; mode=block";
 
 ## Configure nginx to use these files for ssl
 
+With the configuration below you tell nginx to listen to port 80 for incoming traffic and when it does, redirect the traffic to the secure port 443 or https. Now your webtraffic will be more secure than just plain http.
+
 Go to the nginx directory ``/etc/nginx/conf.d`` where we created the file ``freq_proxy.conf`` earlier in step 6.
 
 Backup the file:
@@ -147,6 +149,15 @@ The warning is completely normal because we use self signed certificates. See al
 The final step is to configure the firewall to let the secure port pass.
 
 ```
+sudo ufw allow https/tcp
+
+sudo ufw status
+```
+
+U can also configure the firewall to 'listen to an application' with the following commands.
+Just make sure that you delete the earlier configured rules:
+
+```
 # To see which apps are available for the firewall
 sudo ufw app list
 
@@ -155,16 +166,10 @@ sudo ufw status
 
 # Add the secure port and remove port 80 from the firewall
 sudo ufw allow 'Nginx Full'
-sudo ufw delete allow 'Nginx HTTP'
-```
 
-Or when u used the instructions from part 6 of this tutorial:
-
-```
+# Remove the ports that are configured earlier
 sudo ufw delete allow http/tcp
 sudo ufw delete allow https/tcp
-
-sudo ufw status
 ```
 
 ## Reload nginx to make use of ssl

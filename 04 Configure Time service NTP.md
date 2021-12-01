@@ -11,7 +11,7 @@ Check the timezone and if the ntp service is activated and synchronized.
 Use the following command to see the symlink to the configured system timezone:
 
 ```
-sudo ln -l /etc/localtime
+sudo ls -l /etc/localtime
 ```
 
 or

@@ -12,13 +12,13 @@ U can use the following oneliner to create a random 12 character password:
 date +%s | sha256sum | base64 | head -c 12 ; echo
 ```
 
-Also, use a obscure port for the interface.
+Yuo can leave the config of the API like this if you want to use nginx as a proxy server.
 
 ```
     "api_server": {
         "enabled": true,
-        "listen_ip_address": "0.0.0.0",
-        "listen_port": 18834,
+        "listen_ip_address": "127.0.0.1",
+        "listen_port": 8080,
         "verbosity": "error",
         "enable_openapi": false,
         "jwt_secret_key": "<USEARANDOMKEYFORSECURECONNECTION>",
@@ -29,9 +29,26 @@ Also, use a obscure port for the interface.
 
 ```
 
-Allow the firewall to use the port you just configured
+## Not using NGINX
+
+If you do not want to use nginx, then consider using a obscure port for your web API.
+```
+    "api_server": {
+        "enabled": true,
+        "listen_ip_address": "127.0.0.1",
+        "listen_port": 3665,
+        "verbosity": "error",
+        "enable_openapi": false,
+        "jwt_secret_key": "<USEARANDOMKEYFORSECURECONNECTION>",
+        "CORS_origins": [],
+        "username": "<YOURUSERNAME",
+        "password": "<AVERYGOODPASSWORD>"
+    },
 
 ```
-sudo ufw allow 18834/tcp
-```
 
+Change your firewall to allow traffic to that port:
+
+```
+sudo ufw allow 3665/tcp
+```
