@@ -23,13 +23,13 @@ sudo apt update
 
 sudo apt upgrade
 
-apt install certbot python3-certbot-nginx
+sudo apt install certbot python3-certbot-nginx
 ```
 
 ## Run the certbot for the first time
 
 ```
-certbot --nginx -d <YOURDOMAIN>
+sudo certbot --nginx -d <YOURDOMAIN>
 ```
 
 Answer the questions and continue...
@@ -47,7 +47,7 @@ The certbot automatically renews the bot's certificate.
 To override this by hand, use the following command:
 
 ```
-certbot renew
+sudo certbot renew
 ```
 
 You can use the ``--dry-run`` option to test this without actually renewing the certificate.
