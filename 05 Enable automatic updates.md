@@ -7,6 +7,13 @@ sudo apt update
 sudo apt dist-upgrade
 
 sudo apt install unattended-upgrades
+```
+The following three lines fixes any error that prevents some systems from proceeding with the configuration
+```
+sudo export LC_ALL=C.UTF-8
+sudo update-locale
+sudo dpkg-reconfigure locales
+
 sudo dpkg-reconfigure --priority=low unattended-upgrades
 ```
 

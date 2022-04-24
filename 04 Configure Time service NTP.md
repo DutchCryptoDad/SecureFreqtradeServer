@@ -46,6 +46,7 @@ It's important that the bot's time is synchronised with a time server.
 For Europe, you can see the timeservers here: https://www.pool.ntp.org/zone/europe
 
 ```
+sudo apt install systemd-timesyncd
 sudo nano /etc/systemd/timesyncd.conf
 ```
 
