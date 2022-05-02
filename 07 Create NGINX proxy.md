@@ -32,13 +32,13 @@ sudo apt install nginx
 Check if nginx is running:
 
 ```
-systemctl status nginx
+sudo systemctl status nginx
 ```
 
 Add the port to the firewall, otherwise you cannot connect to the webserver.
 
 ```
-Sudo ufw allow http
+sudo ufw allow http
 ```
 
 Now you can check your browser:
